@@ -9,7 +9,7 @@
 #include <stdbool.h>
 
 enum LinkedListType {
-    CLASSICL,
+    CLASSIC,
     MEMORY_POOL
 };
 
@@ -24,7 +24,7 @@ typedef struct LinkedList {
     Node *head;
 
     /**
-    * Add data to the head of the Linked List
+    * Add data to the end (tail) of the Linked List
     * @param linkedList
     * @param data
     */
@@ -78,17 +78,17 @@ typedef struct LinkedList {
      * Given a Node, returns the next element in the linked list
      * @return next element node
      */
-    Node *(*next)(struct Node);
+    Node *(*next)(Node);
 
     /**
      * Given a Node, returns the next element in the linked list
      * @return next element node
      */
-    Node *(*previous)(struct Node);
+    Node *(*previous)(Node);
 
-    bool (*pop)(struct LinkedList);
+    bool (*pop)(struct LinkedList *);
 
-    bool (*push)(struct LinkedList);
+    bool (*push)(struct LinkedList *, double );
 
     /**
     * Delete data from given a position
@@ -164,49 +164,6 @@ static LinkedList mp_initLinkedList();
  * */
 
 
-static LinkedList initLinkedList(enum LinkedListType type) {
-    if (type == CLASSICL) {
-        return classic_initLinkedList();
-    } else if (type == MEMORY_POOL) {
-        return mp_initLinkedList();
-    } else {
-        LinkedList ll = {};
-        return ll;
-    }
-}
-
-static LinkedList classic_initLinkedList() {
-    LinkedList ll = {
-            .size = 0,
-            .head = NULL,
-            .add = classic_insertHead,
-            .addFirst = classic_insertHead,
-            .addLast = classic_insertTail,
-            .addAt = classic_insertAt,
-            .get = classic_get,
-            .getFirst = classic_getFirst,
-            .getLast = classic_getLast,
-            .print = classic_print
-    };
-    return ll;
-}
-
-static LinkedList mp_initLinkedList() {
-    LinkedList ll = {
-            .size = 0,
-            .head = NULL,
-            .add = mp_insertHead,
-            .addFirst = mp_insertHead,
-            .addLast = mp_insertTail,
-            .addAt = mp_insertAt,
-            .get = mp_get,
-            .getFirst = mp_getFirst,
-            .getLast = mp_getLast,
-            .print = mp_print
-    };
-    return ll;
-}
-
 /**
  * Get Element Data at Linked List position
  * @param *linkedList
@@ -239,6 +196,64 @@ inline double getLastData(LinkedList linkedList) {
 
 inline size_t getSize(LinkedList linkedList) {
     return linkedList.size;
+}
+
+static Node *next(Node node) {
+    return node.next;
+}
+
+static Node *previous(Node node) {
+    return node.previous;
+}
+
+
+static LinkedList initLinkedList(enum LinkedListType type) {
+    if (type == CLASSIC) {
+        return classic_initLinkedList();
+    } else if (type == MEMORY_POOL) {
+        return mp_initLinkedList();
+    } else {
+        LinkedList ll = {};
+        return ll;
+    }
+}
+
+static LinkedList classic_initLinkedList() {
+    LinkedList ll = {
+            .size = 0,
+            .head = NULL,
+            .add = classic_insertHead,
+            .addFirst = classic_insertHead,
+            .addLast = classic_insertTail,
+            .addAt = classic_insertAt,
+            .get = classic_get,
+            .getFirst = classic_getFirst,
+            .getLast = classic_getLast,
+            .next = next,
+            .previous = previous,
+            .pop = classic_deleteTail,
+            .push = classic_insertHead,
+            .print = classic_print
+    };
+    return ll;
+}
+
+static LinkedList mp_initLinkedList() {
+    LinkedList ll = {
+            .size = 0,
+            .head = NULL,
+            .add = mp_insertHead,
+            .addFirst = mp_insertHead,
+            .addLast = mp_insertTail,
+            .addAt = mp_insertAt,
+            .get = mp_get,
+            .getFirst = mp_getFirst,
+            .getLast = mp_getLast,
+            .next = next,
+            .previous = previous,
+            .print = mp_print
+    };
+    return ll;
 }
 
 

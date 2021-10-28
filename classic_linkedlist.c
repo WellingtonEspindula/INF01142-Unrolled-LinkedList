@@ -16,16 +16,15 @@ Node *findTail(LinkedList linkedList) {
     return current;
 }
 
-Node *findPreviousElement(LinkedList linkedList, u_int pos) {
-    Node *current = linkedList.head;
-    return current->previous;
-}
-
 Node *findElement(LinkedList linkedList, u_int pos) {
     if (pos == 0) {
         return linkedList.head;
     } else {
-        return findPreviousElement(linkedList, pos)->next;
+        Node *current = linkedList.head;
+        for (int i = 0; i < pos; i++) {
+            current = current->next;
+        }
+        return current;
     }
 }
 
@@ -69,9 +68,11 @@ bool classic_insertTail(LinkedList *linkedList, double data) {
 
 
 bool classic_insertAt(LinkedList *linkedList, double data, u_int pos) {
-    if (pos < linkedList->size) {
+    if (pos <= linkedList->size) {
         if (pos == 0) {
             return classic_insertHead(linkedList, data);
+        } else if (pos == linkedList->size) {
+            return classic_insertTail(linkedList, data);
         } else {
             Node *elementAt = findElement(*linkedList, pos);
             Node *preElementAt = elementAt->previous;
@@ -86,9 +87,8 @@ bool classic_insertAt(LinkedList *linkedList, double data, u_int pos) {
 
             return true;
         }
-    } else {
-        return false;
     }
+    return false;
 }
 
 Node *classic_get(LinkedList linkedList, u_int pos) {
@@ -106,31 +106,6 @@ Node *classic_getLast(LinkedList linkedList) {
     return findTail(linkedList);
 }
 
-void classic_print(LinkedList linkedList) {
-    Node *current = linkedList.head;
-    printf("---------- Classic DLL: Current Status -------\n");
-    printf("Normal Order: \n");
-    while (current != NULL) {
-        printf("|%f| <=> ", current->data);
-        current = current->next;
-        if (current == NULL) {
-            printf("|NULL| \n");
-        }
-    }
-
-    printf("Reverse Order: \n");
-    current = findTail(linkedList);
-    while (current != NULL) {
-        printf("|%f| <=> ", current->data);
-        current = current->previous;
-        if (current == NULL) {
-            printf("|NULL| \n");
-        }
-    }
-    printf("Size: %zu\n", linkedList.size);
-    printf("----------------------------------------------\n")
-}
-
 bool classic_delete(LinkedList *linkedList, u_int pos) {
     return true;
 }
@@ -141,5 +116,42 @@ bool classic_deleteHead(LinkedList *linkedList) {
 
 bool classic_deleteTail(LinkedList *linkedList) {
     return true;
+}
+
+void classic_print(LinkedList linkedList) {
+    Node *current = linkedList.head;
+    printf("----------------- Classic DLL (Doubly Linked List) : Current Status -----------------\n");
+    printf("Normal Order: \n");
+
+    printf("NULL| <- ");
+    while (current != NULL) {
+        printf("|%.1f|", current->data);
+        current = current->next;
+        if (current == NULL) {
+            printf(" -> |NULL\n");
+        } else {
+            printf(" <=> ");
+        }
+    }
+
+    printf("\n");
+    printf("Reverse Order: \n");
+    current = findTail(linkedList);
+    printf("NULL| <- ");
+    while (current != NULL) {
+        printf("|%.1f|", current->data);
+        current = current->previous;
+        if (current == NULL) {
+            printf(" -> |NULL\n");
+        } else {
+            printf(" <=> ");
+        }
+    }
+
+    printf("\n");
+    printf("Head: %.1f\n", linkedList.getFirst(linkedList)->data);
+    printf("Tail: %.1f\n", linkedList.getLast(linkedList)->data);
+    printf("Size: %zu\n", linkedList.size);
+    printf("------------------------------------------------------------------------------------\n");
 }
 

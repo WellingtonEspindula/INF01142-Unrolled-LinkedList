@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 //    int nb_exp = atoi(argv[2]);
 //    int exp_num = atoi(argv[3]);
 //
-//    LinkedList vanillaLinkedList = initLinkedList(CLASSICL);
+//    LinkedList vanillaLinkedList = initLinkedList(CLASSIC);
 //
 //    clock_t startTime = clock();
 //    for (int i = 0; i <= n; i++) {
@@ -48,14 +48,21 @@ int main(int argc, char *argv[]) {
 //    double elapsedTimeSeconds = ((double) endTime- (double) startTime)/(double) CLOCKS_PER_SEC;
 //    printf("Insertion time = %f ms", elapsedTimeSeconds*1E3);
 
+    LinkedList vanillaLinkedList = initLinkedList(CLASSIC);
+    for (int i = 0; i <= 20; i++) {
+        vanillaLinkedList.addLast(&vanillaLinkedList, i);
+//        printf("i=%d\n", i);
+    }
+    vanillaLinkedList.print(vanillaLinkedList);
+//    vanillaLinkedList.addAt(&vanillaLinkedList, 4123312, 1);
 //    vanillaLinkedList.print(vanillaLinkedList);
-//
-//    for (int i = 0; i <= 21; i++) {
-//        int pos = i;
-//        Node *element = vanillaLinkedList.get(vanillaLinkedList, pos);
-//        if (element != NULL) printf("\nat = %d, value = %f", pos, element->data);
-//        else printf("\nIsh num alcancou");
-//    }
+
+    for (int i = -1; i <= 21; i++) {
+        int pos = i;
+        Node *element = vanillaLinkedList.get(vanillaLinkedList, pos);
+        if (element != NULL) printf("\nat = %d, value = %.1f", pos, element->data);
+        else printf("\nIsh num alcancou");
+    }
 
     return 0;
 }
