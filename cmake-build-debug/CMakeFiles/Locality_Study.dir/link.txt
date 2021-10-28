@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/Locality_Study.dir/main.c.o CMakeFiles/Locality_Study.dir/vanilla_linkedlist.c.o CMakeFiles/Locality_Study.dir/mp_linkedlist.c.o -o Locality_Study 

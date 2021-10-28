@@ -1,0 +1,4 @@
+/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug

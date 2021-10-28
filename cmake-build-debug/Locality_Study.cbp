@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Locality_Study"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Locality_Study">
+				<Option output="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Locality_Study" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 Locality_Study"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Locality_Study/fast">
+				<Option output="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Locality_Study" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 Locality_Study/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/linkedlist.h">
+			<Option target="Locality_Study"/>
+		</Unit>
+		<Unit filename="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/main.c">
+			<Option target="Locality_Study"/>
+		</Unit>
+		<Unit filename="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/mp_linkedlist.c">
+			<Option target="Locality_Study"/>
+		</Unit>
+		<Unit filename="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/vanilla_linkedlist.c">
+			<Option target="Locality_Study"/>
+		</Unit>
+		<Unit filename="/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
