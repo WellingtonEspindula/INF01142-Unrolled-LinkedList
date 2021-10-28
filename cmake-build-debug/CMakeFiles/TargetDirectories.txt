@@ -1,3 +1,0 @@
-/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/wmespindula/Documentos/Graduacao/2021-1-ERE/SisOp/Trabalhos/T2/Locality-Study/cmake-build-debug/CMakeFiles/Locality_Study.dir
