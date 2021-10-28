@@ -107,14 +107,17 @@ Node *classic_getLast(LinkedList linkedList) {
 }
 
 bool classic_delete(LinkedList *linkedList, u_int pos) {
+    // TODO
     return true;
 }
 
 bool classic_deleteHead(LinkedList *linkedList) {
+    // TODO
     return true;
 }
 
 bool classic_deleteTail(LinkedList *linkedList) {
+    // TODO
     return true;
 }
 

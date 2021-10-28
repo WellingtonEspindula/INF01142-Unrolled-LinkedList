@@ -20,9 +20,11 @@ typedef struct Node {
 } Node;
 
 typedef struct LinkedList {
+    // Variables
     size_t size;
     Node *head;
 
+    // Methods
     /**
     * Add data to the end (tail) of the Linked List
     * @param linkedList
@@ -97,6 +99,9 @@ typedef struct LinkedList {
     */
     bool (*delete)(struct LinkedList *, u_int);
 
+    /**
+     * Structure pretty print
+     */
     void (*print)(struct LinkedList);
 
 } LinkedList;
@@ -220,8 +225,10 @@ static LinkedList initLinkedList(enum LinkedListType type) {
 
 static LinkedList classic_initLinkedList() {
     LinkedList ll = {
+            // variables
             .size = 0,
             .head = NULL,
+            // methods
             .add = classic_insertHead,
             .addFirst = classic_insertHead,
             .addLast = classic_insertTail,
@@ -240,8 +247,10 @@ static LinkedList classic_initLinkedList() {
 
 static LinkedList mp_initLinkedList() {
     LinkedList ll = {
+            // variables
             .size = 0,
             .head = NULL,
+            // methods
             .add = mp_insertHead,
             .addFirst = mp_insertHead,
             .addLast = mp_insertTail,
@@ -251,6 +260,8 @@ static LinkedList mp_initLinkedList() {
             .getLast = mp_getLast,
             .next = next,
             .previous = previous,
+            .pop = mp_deleteTail,
+            .push = mp_insertHead,
             .print = mp_print
     };
     return ll;
