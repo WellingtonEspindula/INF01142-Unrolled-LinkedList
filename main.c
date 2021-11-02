@@ -51,26 +51,28 @@ void benchmark(void (*f)(LinkedList *list, int n), LinkedList *list, int n, cons
 //}
 
 int main(int argc, char *argv[]) {
-    if (argc != 4) {
-        printf("Usage: %s <elements-number> <nb-experiments> <#experimento> (see run.py)\n", argv[0]);
-        exit(-1);
-    }
-
-    srand(clock());
-
-    int n = atoi(argv[1]);
-    int nb_exp = atoi(argv[2]);
-    int exp_num = atoi(argv[3]);
-
-    LinkedList classicLl = initLinkedList(CLASSIC);
-    benchmark(insertLinkedList, &classicLl, n, "Classic Insertion time");
-
-    LinkedList unrolledLl = initLinkedList(UNROLLED);
-    benchmark(insertLinkedList, &unrolledLl, n, "Unrolled Insertion time");
-
-    benchmark(fastIterLinkedList, &classicLl, n, "Classic Iteration time (Begin-End) ");
+//    if (argc != 4) {
+//        printf("Usage: %s <elements-number> <nb-experiments> <#experimento> (see run.py)\n", argv[0]);
+//        exit(-1);
+//    }
+//
+//    srand(clock());
+//
+//    int n = atoi(argv[1]);
+//    int nb_exp = atoi(argv[2]);
+//    int exp_num = atoi(argv[3]);
+//
+//    LinkedList classicLl = initLinkedList(CLASSIC);
+//    benchmark(insertLinkedList, &classicLl, n, "Classic Insertion time");
+//
+//    LinkedList unrolledLl = initLinkedList(UNROLLED);
+//    benchmark(insertLinkedList, &unrolledLl, n, "Unrolled Insertion time");
+//
+//    benchmark(iterLinkedList, &classicLl, n, "Classic Iteration time (Begin-End) ");
 //    benchmark(iterLinkedList, &unrolledLl, n, "Unrolled Iteration time (Begin-End) ");
-    benchmark(fastIterLinkedList, &unrolledLl, n, "Unrolled Iteration time (Begin-End) ");
+//
+//    benchmark(fastIterLinkedList, &classicLl, n, "Classic Foreach Iteration time (Begin-End) ");
+//    benchmark(fastIterLinkedList, &unrolledLl, n, "Unrolled Foreach Iteration time (Begin-End) ");
 
 
     /*
@@ -103,11 +105,14 @@ int main(int argc, char *argv[]) {
     /*
      * TESTS VANILLA LINKED LIST
      */
-//    LinkedList mbLinkedList = initLinkedList(CLASSIC);
-//    for (int i = 0; i <= 100; i++) {
-//        mbLinkedList.addLast(&mbLinkedList, i);
-//    }
-//    mbLinkedList.verbosePrint(mbLinkedList);
+    LinkedList mbLinkedList = initLinkedList(CLASSIC);
+    for (int i = 0; i <= 20; i++) {
+        mbLinkedList.addLast(&mbLinkedList, i);
+    }
+    for (int i = 0; i <= 21; ++i) {
+        bool removed = mbLinkedList.delete(&mbLinkedList);
+    }
+    mbLinkedList.verbosePrint(mbLinkedList);
 
 
 

@@ -16,6 +16,7 @@ LinkedList classic_initLinkedList() {
             .get = classic_get,
             .getFirst = classic_getFirst,
             .getLast = classic_getLast,
+            .delete = classic_deleteTail,
             .isDone = classic_isDone,
             .next = classic_next,
             .previous = classic_previous,
@@ -175,12 +176,21 @@ bool classic_deleteHead(LinkedList *linkedList) {
 
 bool classic_deleteTail(LinkedList *linkedList) {
     Node *tail = linkedList->tail;
-    linkedList->tail = tail->pPrevNode;
-    tail->pPrevNode->pNextNode = NULL;
-
-    free(tail);
-
-    return true;
+    if (tail != NULL) {
+        if (tail->pPrevNode != NULL) {
+            linkedList->tail = tail->pPrevNode;
+            tail->pPrevNode->pNextNode = NULL;
+            free(tail);
+        } else {
+            linkedList->tail = NULL;
+            linkedList->head = NULL;
+            free(tail);
+        }
+        linkedList->size--;
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void classic_forEach(LinkedList linkedList, void (*func)(double data)) {

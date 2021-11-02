@@ -59,6 +59,19 @@ bool unrolled_insertTail(LinkedList *linkedList, double data) {
 }
 
 bool unrolled_deleteTail(LinkedList *linkedList) {
+    if (linkedList->tailArrayNode->usedSlots > 0) {
+        linkedList->tailArrayNode->usedSlots--;
+    } else {
+        if (linkedList->tailArrayNode->prev != NULL) {
+            ArrayNode *tailArrayNode = linkedList->tailArrayNode;
+            linkedList->tailArrayNode->prev->next = NULL;
+            linkedList->tailArrayNode = tailArrayNode->prev;
+            free(tailArrayNode);
+        } else {
+            return false;
+        }
+    }
+    linkedList->size--;
     return true;
 }
 
