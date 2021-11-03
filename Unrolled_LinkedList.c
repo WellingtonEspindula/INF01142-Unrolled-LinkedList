@@ -88,24 +88,42 @@ bool unrolled_deleteTail(LinkedList *linkedList) {
 
 Node unrolled_findHead(LinkedList linkedList) {
     ArrayNode *headArrayNode = linkedList.headArrayNode;
-    Node headNode = {
-            .data = headArrayNode->array[0],
-            .isValid = true,
-            .currArrayNode = headArrayNode,
-            .pos = 0
-    };
-    return headNode;
+    if (headArrayNode && headArrayNode->usedSlots > 0) {
+        Node headNode = {
+                .data = headArrayNode->array[0],
+                .isValid = true,
+                .currArrayNode = headArrayNode,
+                .pos = 0
+        };
+        return headNode;
+    } else {
+        Node nextNode = {
+                .isValid = false,
+                .pos = -1,
+                .currArrayNode = NULL
+        };
+        return nextNode;
+    }
 }
 
 Node unrolled_findTail(LinkedList linkedList) {
     ArrayNode *tailArrayNode = linkedList.tailArrayNode;
-    Node tailNode = {
-            .data = tailArrayNode->array[tailArrayNode->usedSlots - 1],
-            .isValid = true,
-            .currArrayNode = tailArrayNode,
-            .pos = (int) tailArrayNode->usedSlots - 1
-    };
-    return tailNode;
+    if (tailArrayNode && tailArrayNode->usedSlots > 0) {
+        Node tailNode = {
+                .data = tailArrayNode->array[tailArrayNode->usedSlots - 1],
+                .isValid = true,
+                .currArrayNode = tailArrayNode,
+                .pos = (int) tailArrayNode->usedSlots - 1
+        };
+        return tailNode;
+    } else {
+        Node nextNode = {
+                .isValid = false,
+                .pos = -1,
+                .currArrayNode = NULL
+        };
+        return nextNode;
+    }
 }
 
 Node unrolled_findElement(LinkedList linkedList, u_int pos) {
