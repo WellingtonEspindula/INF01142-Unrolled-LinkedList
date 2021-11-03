@@ -5,9 +5,10 @@
 #include <malloc.h>
 #include "LinkedList.h"
 
-struct Node *mergeSort_split(struct Node *head);
-struct Node *mergeSort(struct Node *head);
-struct Node *mergeSort_split(struct Node *head);
+struct Node *classic_split(struct Node *head);
+
+struct Node *classic_mergeSort(struct Node *head);
+
 
 LinkedList classic_initLinkedList() {
     LinkedList ll = {
@@ -142,8 +143,7 @@ Node classic_getFirst(LinkedList linkedList) {
 Node classic_getLast(LinkedList linkedList) {
     if (linkedList.tail != NULL) {
         return *(linkedList.tail);
-    }
-    else {
+    } else {
         Node invalidNode = {
                 .isValid = false
         };
@@ -217,15 +217,15 @@ void classic_forEach(LinkedList linkedList, void (*func)(double data)) {
 }
 
 void classic_sort(LinkedList *linkedList) {
-    Node *newHead = mergeSort(linkedList->head);
+    Node *newHead = classic_mergeSort(linkedList->head);
     linkedList->head = newHead;
     linkedList->tail = findTail(*linkedList);
 }
 
 
 /* ------ MERGE SORT ALGORITHM (Code from GeeksForGeeks) ------ */
-// Function to mergeSort_merge two linked lists
-struct Node *mergeSort_merge(struct Node *first, struct Node *second) {
+// Function to classic_merge two linked lists
+struct Node *classic_merge(struct Node *first, struct Node *second) {
     // If first linked list is empty
     if (!first)
         return second;
@@ -236,33 +236,33 @@ struct Node *mergeSort_merge(struct Node *first, struct Node *second) {
 
     // Pick the smaller value
     if (first->data < second->data) {
-        first->pNextNode = mergeSort_merge(first->pNextNode, second);
+        first->pNextNode = classic_merge(first->pNextNode, second);
         first->pNextNode->pPrevNode = first;
         first->pPrevNode = NULL;
         return first;
     } else {
-        second->pNextNode = mergeSort_merge(first, second->pNextNode);
+        second->pNextNode = classic_merge(first, second->pNextNode);
         second->pNextNode->pPrevNode = second;
         second->pPrevNode = NULL;
         return second;
     }
 }
 
-// Function to do mergeSort_merge sort
-struct Node *mergeSort(struct Node *head) {
+// Function to do classic_merge sort
+struct Node *classic_mergeSort(struct Node *head) {
     if (!head || !head->pNextNode)
-        return head;
-    struct Node *second = mergeSort_split(head);
+         return head;
+    struct Node *second = classic_split(head);
 
     // Recur for left and right halves
-    head = mergeSort(head);
-    second = mergeSort(second);
+    head = classic_mergeSort(head);
+    second = classic_mergeSort(second);
 
     // Merge the two sorted halves
-    return mergeSort_merge(head, second);
+    return classic_merge(head, second);
 }
 
-struct Node *mergeSort_split(struct Node *head) {
+struct Node *classic_split(struct Node *head) {
     struct Node *fast = head, *slow = head;
     while (fast->pNextNode && fast->pNextNode->pNextNode) {
         fast = fast->pNextNode->pNextNode;

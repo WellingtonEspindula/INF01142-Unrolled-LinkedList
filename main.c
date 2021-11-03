@@ -7,13 +7,17 @@
 #include "LinkedList.h"
 
 void insertLinkedList(LinkedList *list, int n) {
-    for (int i = 0; i <= n; i++) {
+    for (int i = n; i >= 0; i--) {
         list->add(list, i);
     }
 }
 
 void iterLinkedList(LinkedList *list, int n) {
     for (Node node = list->getFirst(*list); !list->isDone(node); node = list->next(node)) {}
+}
+
+void sortLinkedList(LinkedList *list, int n) {
+    list->sort(list);
 }
 
 void emptyFunction(double data) {}
@@ -51,29 +55,31 @@ void benchmark(void (*f)(LinkedList *list, int n), LinkedList *list, int n, cons
 //}
 
 int main(int argc, char *argv[]) {
-//    if (argc != 4) {
-//        printf("Usage: %s <elements-number> <nb-experiments> <#experimento> (see run.py)\n", argv[0]);
-//        exit(-1);
-//    }
-//
-//    srand(clock());
-//
-//    int n = atoi(argv[1]);
-//    int nb_exp = atoi(argv[2]);
-//    int exp_num = atoi(argv[3]);
-//
-//    LinkedList classicLl = initLinkedList(CLASSIC);
-//    benchmark(insertLinkedList, &classicLl, n, "Classic Insertion time");
-//
-//    LinkedList unrolledLl = initLinkedList(UNROLLED);
-//    benchmark(insertLinkedList, &unrolledLl, n, "Unrolled Insertion time");
-//
-//    benchmark(iterLinkedList, &classicLl, n, "Classic Iteration time (Begin-End) ");
-//    benchmark(iterLinkedList, &unrolledLl, n, "Unrolled Iteration time (Begin-End) ");
-//
-//    benchmark(fastIterLinkedList, &classicLl, n, "Classic Foreach Iteration time (Begin-End) ");
-//    benchmark(fastIterLinkedList, &unrolledLl, n, "Unrolled Foreach Iteration time (Begin-End) ");
+    if (argc != 4) {
+        printf("Usage: %s <elements-number> <nb-experiments> <#experimento> (see run.py)\n", argv[0]);
+        exit(-1);
+    }
 
+    srand(clock());
+
+    int n = atoi(argv[1]);
+    int nb_exp = atoi(argv[2]);
+    int exp_num = atoi(argv[3]);
+
+    LinkedList classicLl = initLinkedList(CLASSIC);
+    benchmark(insertLinkedList, &classicLl, n, "Classic Insertion time");
+
+    LinkedList unrolledLl = initLinkedList(UNROLLED);
+    benchmark(insertLinkedList, &unrolledLl, n, "Unrolled Insertion time");
+
+    benchmark(iterLinkedList, &classicLl, n, "Classic Iteration time (Begin-End) ");
+    benchmark(iterLinkedList, &unrolledLl, n, "Unrolled Iteration time (Begin-End) ");
+
+    benchmark(fastIterLinkedList, &classicLl, n, "Classic Foreach Iteration time (Begin-End) ");
+    benchmark(fastIterLinkedList, &unrolledLl, n, "Unrolled Foreach Iteration time (Begin-End) ");
+
+    benchmark(sortLinkedList, &classicLl, n, "Classic Sort time (Begin-End) ");
+    benchmark(sortLinkedList, &unrolledLl, n, "Unrolled Sort time (Begin-End) ");
 
     /*
      * MY TEST AREA
@@ -105,14 +111,14 @@ int main(int argc, char *argv[]) {
     /*
      * TESTS VANILLA LINKED LIST
      */
-    LinkedList mbLinkedList = initLinkedList(CLASSIC);
-    for (int i = 20; i >= 0; i--) {
-        mbLinkedList.addLast(&mbLinkedList, i);
-    }
-    mbLinkedList.verbosePrint(mbLinkedList);
-    printf("\n");
-    mbLinkedList.sort(&mbLinkedList);
-    mbLinkedList.verbosePrint(mbLinkedList);
+//    LinkedList mbLinkedList = initLinkedList(UNROLLED);
+//    for (int i = 43; i >= 0; i--) {
+//        mbLinkedList.addLast(&mbLinkedList, (i + 0.1));
+//    }
+//    mbLinkedList.verbosePrint(mbLinkedList);
+//    printf("\n");
+//    mbLinkedList.sort(&mbLinkedList);
+//    mbLinkedList.verbosePrint(mbLinkedList);
 //    for (int i = 0; i <= 21; ++i) {
 //        bool removed = mbLinkedList.delete(&mbLinkedList);
 //    }

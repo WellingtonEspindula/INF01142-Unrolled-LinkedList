@@ -3,11 +3,20 @@
 //
 
 #include <malloc.h>
+#include <string.h>
 #include "LinkedList.h"
 
 #define ITEMS_PER_BLOCK 8
 
 Node unrolled_findElement(LinkedList list, u_int pos);
+
+void unrolled_quickSort(double a[], int l, int u);
+
+int unrolled_partition(double a[], int l, int u);
+
+struct ArrayNode *unrolled_split(struct ArrayNode *head);
+
+struct ArrayNode *unrolled_mergeSort(struct ArrayNode *head);
 
 ArrayNode *arrayNode_create() {
     ArrayNode *arrayNode = malloc(sizeof(ArrayNode));
@@ -38,7 +47,8 @@ LinkedList unrolled_initLinkedList() {
             .previous = unrolled_previous,
             .delete = unrolled_deleteTail,
             .verbosePrint = verbosePrint,
-            .forEach = unrolled_forEach
+            .forEach = unrolled_forEach,
+            .sort = unrolled_sort
     };
     return ll;
 }
@@ -205,18 +215,22 @@ void unrolled_forEach(LinkedList linkedList, void (*func)(double data)) {
     }
 }
 
-int quickSort_partition(int a[], int l, int u);
+void unrolled_sort(LinkedList *linkedList) {
+    ArrayNode *curr = linkedList->headArrayNode;
+    unrolled_mergeSort(curr);
+}
 
-void quickSort(int a[], int l, int u) {
+/* ------ QUICK AND MERGE SORT ALGORITHMS ------ */
+void unrolled_quickSort(double a[], int l, int u) {
     int j;
     if (l < u) {
-        j = quickSort_partition(a, l, u);
-        quickSort(a, l, j - 1);
-        quickSort(a, j + 1, u);
+        j = unrolled_partition(a, l, u);
+        unrolled_quickSort(a, l, j - 1);
+        unrolled_quickSort(a, j + 1, u);
     }
 }
 
-int quickSort_partition(int a[], int l, int u) {
+int unrolled_partition(double a[], int l, int u) {
     int v, i, j, temp;
     v = a[l];
     i = l;
@@ -237,5 +251,83 @@ int quickSort_partition(int a[], int l, int u) {
     a[l] = a[j];
     a[j] = v;
     return (j);
+}
+
+void merge(ArrayNode *head, int size, int lo, int mid, int hi) {
+    double aux[size];
+    // copy to aux[]
+    ArrayNode *curr = head;
+    int k = 0;
+    while (curr) {
+        memcpy(&aux[k], curr->array, sizeof(double) * curr->usedSlots);
+        k += curr->usedSlots;
+        curr = curr->next;
+    }
+
+    // merge back to a[]
+    int i = lo, j = mid;
+    ArrayNode *currArrayNode = head;
+    while (currArrayNode != NULL) {
+        for (k = 0; k < currArrayNode->usedSlots; k++) {
+            if (i >= mid) {
+                currArrayNode->array[k] = aux[j++];
+            } else if (j > hi) {
+                currArrayNode->array[k] = aux[i++];
+            } else if (aux[j] < aux[i]) {
+                currArrayNode->array[k] = aux[j++];
+            } else {
+                currArrayNode->array[k] = aux[i++];
+            }
+        }
+        currArrayNode = currArrayNode->next;
+    }
+}
+
+struct ArrayNode *unrolled_merge(ArrayNode *head, ArrayNode *second) {
+    ArrayNode *curr = head;
+    int size = curr->usedSlots;
+    while (curr->next != NULL) {
+        size += curr->usedSlots;
+        curr = curr->next;
+    }
+    int mid = size;
+    curr->next = second;
+    curr = curr->next;
+    while (curr != NULL) {
+        size += curr->usedSlots;
+        curr = curr->next;
+    }
+    merge(head, size, 0, mid, size - 1);
+    return head;
+
+}
+
+// Function to do unrolled_merge sort
+struct ArrayNode *unrolled_mergeSort(struct ArrayNode *head) {
+    if (!head || !head->next) {
+        if (head && !head->next) {
+            unrolled_quickSort(head->array, 0, head->usedSlots - 1);
+        }
+        return head;
+    }
+    struct ArrayNode *second = unrolled_split(head);
+
+    // Recur for left and right halves
+    head = unrolled_mergeSort(head);
+    second = unrolled_mergeSort(second);
+
+    // Merge the two sorted halves
+    return unrolled_merge(head, second);
+}
+
+struct ArrayNode *unrolled_split(struct ArrayNode *head) {
+    struct ArrayNode *fast = head, *slow = head;
+    while (fast->next && fast->next->next) {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    struct ArrayNode *temp = slow->next;
+    slow->next = NULL;
+    return temp;
 }
 

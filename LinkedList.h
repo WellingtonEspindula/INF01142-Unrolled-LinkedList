@@ -196,6 +196,8 @@ Node unrolled_previous(Node node);
 
 void unrolled_forEach(LinkedList linkedList, void (*func)(double data));
 
+void unrolled_sort(LinkedList *linkedList);
+
 /*
  * --------------------------
  * COMMON LINKED LIST METHODS
@@ -242,7 +244,8 @@ static void verbosePrint(LinkedList linkedList) {
     printf("Normal Order: \n");
 
     printf("NULL| <- ");
-    for (Node current = linkedList.getFirst(linkedList); !linkedList.isDone(current); current = linkedList.next(current)) {
+    for (Node current = linkedList.getFirst(linkedList); !linkedList.isDone(current); current = linkedList.next(
+            current)) {
         printf("|%.1f|", current.data);
         // If is not the last one, prints the connection
         if (!linkedList.isDone(linkedList.next(current))) {
@@ -271,7 +274,6 @@ static void verbosePrint(LinkedList linkedList) {
     printf("Size: %zu\n", linkedList.size);
     printf("------------------------------------------------------------------------------------\n");
 }
-
 
 
 static LinkedList initLinkedList(enum LinkedListType type) {
