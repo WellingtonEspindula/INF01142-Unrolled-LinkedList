@@ -26,6 +26,7 @@ LinkedList classic_initLinkedList() {
             .next = classic_next,
             .previous = classic_previous,
             .verbosePrint = verbosePrint,
+            .simplePrint = simplePrint,
             .forEach = classic_forEach,
             .sort = classic_sort
     };

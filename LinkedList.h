@@ -96,6 +96,11 @@ typedef struct LinkedList {
     void (*verbosePrint)(struct LinkedList);
 
     /**
+     * Smallest (non verbose) print
+     */
+    void (*simplePrint)(struct LinkedList);
+
+    /**
      * High performance iteration.
      * @param linkedList the list itself
      * @param func Function to be executed in each item of the list
@@ -237,6 +242,14 @@ inline double getLastData(LinkedList linkedList) {
 
 inline size_t getSize(LinkedList linkedList) {
     return linkedList.size;
+}
+
+static void simplePrint(LinkedList linkedList) {
+    for (Node current = linkedList.getFirst(linkedList); !linkedList.isDone(current); current = linkedList.next(
+            current)) {
+        printf("%.1f ", current.data);
+    }
+    printf("\n");
 }
 
 static void verbosePrint(LinkedList linkedList) {

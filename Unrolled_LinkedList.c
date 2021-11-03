@@ -47,6 +47,7 @@ LinkedList unrolled_initLinkedList() {
             .previous = unrolled_previous,
             .delete = unrolled_deleteTail,
             .verbosePrint = verbosePrint,
+            .simplePrint = simplePrint,
             .forEach = unrolled_forEach,
             .sort = unrolled_sort
     };
@@ -231,7 +232,8 @@ void unrolled_quickSort(double a[], int l, int u) {
 }
 
 int unrolled_partition(double a[], int l, int u) {
-    int v, i, j, temp;
+    int i, j;
+    double v, temp;
     v = a[l];
     i = l;
     j = u + 1;
@@ -269,9 +271,9 @@ void merge(ArrayNode *head, int size, int lo, int mid, int hi) {
     ArrayNode *currArrayNode = head;
     while (currArrayNode != NULL) {
         for (k = 0; k < currArrayNode->usedSlots; k++) {
-            if (i >= mid) {
+            if (i >= mid) { // NOLINT(bugprone-branch-clone)
                 currArrayNode->array[k] = aux[j++];
-            } else if (j > hi) {
+            } else if (j > hi) { // NOLINT(bugprone-branch-clone)
                 currArrayNode->array[k] = aux[i++];
             } else if (aux[j] < aux[i]) {
                 currArrayNode->array[k] = aux[j++];
