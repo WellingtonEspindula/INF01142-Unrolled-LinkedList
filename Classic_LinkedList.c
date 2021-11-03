@@ -5,6 +5,10 @@
 #include <malloc.h>
 #include "LinkedList.h"
 
+struct Node *mergeSort_split(struct Node *head);
+struct Node *mergeSort(struct Node *head);
+struct Node *mergeSort_split(struct Node *head);
+
 LinkedList classic_initLinkedList() {
     LinkedList ll = {
             // variables
@@ -21,13 +25,21 @@ LinkedList classic_initLinkedList() {
             .next = classic_next,
             .previous = classic_previous,
             .verbosePrint = verbosePrint,
-            .forEach = classic_forEach
+            .forEach = classic_forEach,
+            .sort = classic_sort
     };
     return ll;
 }
 
+/**
+ * Find tail iteration from head
+ * @param linkedList
+ * @return pointer to tail element
+ */
 Node *findTail(LinkedList linkedList) {
-    return linkedList.tail;
+    Node *curr;
+    for (curr = linkedList.head; curr->pNextNode != NULL; curr = curr->pNextNode) {}
+    return curr;
 }
 
 Node *findElement(LinkedList linkedList, u_int pos) {
@@ -74,7 +86,7 @@ bool classic_insertTail(LinkedList *linkedList, double data) {
         return classic_insertHead(linkedList, data);
     } else {
         Node *newNode = classic_newNode(data);
-        Node *tailElement = findTail(*linkedList);
+        Node *tailElement = linkedList->tail;
         tailElement->pNextNode = newNode;
         newNode->pPrevNode = tailElement;
         linkedList->tail = newNode;
@@ -113,7 +125,7 @@ Node classic_get(LinkedList linkedList, u_int pos) {
     if (pos < linkedList.size) {
         return *(findElement(linkedList, pos));
     } else {
-        return *(findTail(linkedList));
+        return *(linkedList.tail);
     }
 }
 
@@ -128,7 +140,9 @@ Node classic_getFirst(LinkedList linkedList) {
 }
 
 Node classic_getLast(LinkedList linkedList) {
-    if (linkedList.tail != NULL) { return *(findTail(linkedList)); }
+    if (linkedList.tail != NULL) {
+        return *(linkedList.tail);
+    }
     else {
         Node invalidNode = {
                 .isValid = false
@@ -200,4 +214,61 @@ void classic_forEach(LinkedList linkedList, void (*func)(double data)) {
         func(data);
         curr = curr->pNextNode;
     }
+}
+
+void classic_sort(LinkedList *linkedList) {
+    Node *newHead = mergeSort(linkedList->head);
+    linkedList->head = newHead;
+    linkedList->tail = findTail(*linkedList);
+}
+
+
+/* ------ MERGE SORT ALGORITHM (Code from GeeksForGeeks) ------ */
+// Function to mergeSort_merge two linked lists
+struct Node *mergeSort_merge(struct Node *first, struct Node *second) {
+    // If first linked list is empty
+    if (!first)
+        return second;
+
+    // If second linked list is empty
+    if (!second)
+        return first;
+
+    // Pick the smaller value
+    if (first->data < second->data) {
+        first->pNextNode = mergeSort_merge(first->pNextNode, second);
+        first->pNextNode->pPrevNode = first;
+        first->pPrevNode = NULL;
+        return first;
+    } else {
+        second->pNextNode = mergeSort_merge(first, second->pNextNode);
+        second->pNextNode->pPrevNode = second;
+        second->pPrevNode = NULL;
+        return second;
+    }
+}
+
+// Function to do mergeSort_merge sort
+struct Node *mergeSort(struct Node *head) {
+    if (!head || !head->pNextNode)
+        return head;
+    struct Node *second = mergeSort_split(head);
+
+    // Recur for left and right halves
+    head = mergeSort(head);
+    second = mergeSort(second);
+
+    // Merge the two sorted halves
+    return mergeSort_merge(head, second);
+}
+
+struct Node *mergeSort_split(struct Node *head) {
+    struct Node *fast = head, *slow = head;
+    while (fast->pNextNode && fast->pNextNode->pNextNode) {
+        fast = fast->pNextNode->pNextNode;
+        slow = slow->pNextNode;
+    }
+    struct Node *temp = slow->pNextNode;
+    slow->pNextNode = NULL;
+    return temp;
 }

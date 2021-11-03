@@ -106,13 +106,16 @@ int main(int argc, char *argv[]) {
      * TESTS VANILLA LINKED LIST
      */
     LinkedList mbLinkedList = initLinkedList(CLASSIC);
-    for (int i = 0; i <= 20; i++) {
+    for (int i = 20; i >= 0; i--) {
         mbLinkedList.addLast(&mbLinkedList, i);
     }
-    for (int i = 0; i <= 21; ++i) {
-        bool removed = mbLinkedList.delete(&mbLinkedList);
-    }
     mbLinkedList.verbosePrint(mbLinkedList);
+    printf("\n");
+    mbLinkedList.sort(&mbLinkedList);
+    mbLinkedList.verbosePrint(mbLinkedList);
+//    for (int i = 0; i <= 21; ++i) {
+//        bool removed = mbLinkedList.delete(&mbLinkedList);
+//    }
 
 
 

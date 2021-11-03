@@ -95,7 +95,19 @@ typedef struct LinkedList {
      */
     void (*verbosePrint)(struct LinkedList);
 
+    /**
+     * High performance iteration.
+     * @param linkedList the list itself
+     * @param func Function to be executed in each item of the list
+     */
     void (*forEach)(struct LinkedList linkedList, void (*func)(double data));
+
+    /**
+     * Ascending List sort.
+     * It was implemented the classic merge sort into doubly linked list
+     * @param linkedList the list itself
+     */
+    void (*sort)(struct LinkedList *linkedList);
 
 } LinkedList;
 
@@ -109,13 +121,7 @@ LinkedList classic_initLinkedList();
 
 bool classic_insertTail(LinkedList *linkedList, double data);
 
-bool classic_insertAt(LinkedList *linkedList, double data, u_int pos);
-
 bool classic_insertHead(LinkedList *linkedList, double data);
-
-bool classic_delete(LinkedList *linkedList, u_int pos);
-
-bool classic_deleteHead(LinkedList *linkedList);
 
 bool classic_deleteTail(LinkedList *linkedList);
 
@@ -132,6 +138,8 @@ Node classic_next(Node node);
 Node classic_previous(Node node);
 
 void classic_forEach(LinkedList linkedList, void (*func)(double data));
+
+void classic_sort(LinkedList *linkedList);
 
 
 /*
