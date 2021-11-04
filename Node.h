@@ -5,7 +5,9 @@
 #ifndef LOCALITY_STUDY_NODE_H
 #define LOCALITY_STUDY_NODE_H
 
-#define ITEMS_PER_BLOCK 8
+#ifndef ITEMS_PER_BLOCK
+    #define ITEMS_PER_BLOCK 8
+#endif
 
 typedef struct ArrayNode {
     double array[ITEMS_PER_BLOCK];
