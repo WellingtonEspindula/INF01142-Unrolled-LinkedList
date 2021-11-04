@@ -183,45 +183,5 @@ int main(int argc, char *argv[]) {
         }
     }
 
-//    LinkedList classicLl = initLinkedList(CLASSIC);
-//    benchmark(insertLinkedList, &classicLl, n, "Classic Insertion time");
-//
-//    LinkedList unrolledLl = initLinkedList(UNROLLED);
-//    benchmark(insertLinkedList, &unrolledLl, n, "Unrolled Insertion time");
-//
-//    benchmark(iterLinkedList, &classicLl, n, "Classic Iteration time (Begin-End) ");
-//    benchmark(iterLinkedList, &unrolledLl, n, "Unrolled Iteration time (Begin-End) ");
-//
-//    benchmark(fastIterLinkedList, &classicLl, n,
-//                                                   "Classic Foreach Iteration time (Begin-End) ");
-//    benchmark(fastIterLinkedList, &unrolledLl, n,
-//                                                    "Unrolled Foreach Iteration time (Begin-End) ");
-//
-//    benchmark(sortLinkedList, &classicLl, n, "Classic Sort time (random) ");
-//    benchmark(sortLinkedList, &unrolledLl, n, "Unrolled Sort time (random) ");
-//
-//    benchmark(destroyLinkedList, &classicLl, n, "Classic Destroy time ");
-//    benchmark(destroyLinkedList, &unrolledLl, n, "Unrolled Destroy time ");
-
-
-    /*
-     * MY TEST AREA
-     */
-
-    /*
-     * TESTS VANILLA LINKED LIST
-     */
-//    LinkedList mbLinkedList = initLinkedList(UNROLLED);
-//    for (int i = 43; i >= 0; i--) {
-//        mbLinkedList.addLast(&mbLinkedList, ((double) rand()/INT_MAX));
-//    }
-//    mbLinkedList.simplePrint(mbLinkedList);
-////    printf("\n");
-//    mbLinkedList.sort(&mbLinkedList);
-//    mbLinkedList.simplePrint(mbLinkedList);
-//    for (int i = 0; i <= 21; ++i) {
-//        bool removed = mbLinkedList.delete(&mbLinkedList);
-//    }
-
     return 0;
 }
