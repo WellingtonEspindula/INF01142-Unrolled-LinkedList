@@ -6,7 +6,7 @@
 #define LOCALITY_STUDY_NODE_H
 
 #ifndef ITEMS_PER_BLOCK
-    #define ITEMS_PER_BLOCK 8
+#define ITEMS_PER_BLOCK 8
 #endif
 
 typedef struct ArrayNode {
